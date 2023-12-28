@@ -13,6 +13,24 @@
         android:theme="@style/Theme.DIMoon"
         tools:targetApi="31">
         <activity
+            android:name=".paciente.juegos.PlanetaRosaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".paciente.juegos.PlanetaMoradoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".paciente.juegos.PlanetaVerdeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".paciente.juegos.PlanetaRojoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".paciente.PerfilPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".paciente.HomePacienteActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

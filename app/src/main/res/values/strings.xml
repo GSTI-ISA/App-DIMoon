@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DIMoon</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="fechaNac">Fecha de Nacimiento</string>
+    <string name="diagnostico">Diagnóstico</string>
+    <string name="sign_out">Cerrar Sesión</string>
+    <string name="MensajeInicial"> ¡Ayuda a Didi a llegar al planeta azul!</string>
 </resources>

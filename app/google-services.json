@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170275874373",
+    "project_id": "dimoon-c39dc",
+    "storage_bucket": "dimoon-c39dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170275874373:android:c6cf8a29a7104b5930e52c",
+        "android_client_info": {
+          "package_name": "com.example.dimoon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvN82IKxbmPFrOCnSHrug2HhltxlVRTTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
