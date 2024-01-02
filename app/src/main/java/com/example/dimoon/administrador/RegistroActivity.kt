@@ -8,9 +8,12 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.dimoon.InicioActivity
 import com.example.dimoon.R
+import com.example.dimoon.medico.HomeMedicoActivity
+import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
@@ -30,6 +33,7 @@ class RegistroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
+
         user  = findViewById(R.id.textViewUser)
         password = findViewById(R.id.textViewPassword)
         btnAceptar = findViewById(R.id.buttonAceptar)
@@ -44,13 +48,25 @@ class RegistroActivity : AppCompatActivity() {
 
         btnCancelar = findViewById(R.id.buttonCancelar)
 
+
         btnCancelar.setOnClickListener{
             user.text.clear()
             password.text.clear()
             onClick()
         }
+        btnAceptar.setOnClickListener{
+            if (user.text.toString().isNotEmpty()) {
+                val intent = Intent(this, RegistroPacienteActivity::class.java)
+                intent.putExtra("user", user.text.toString())
+                startActivity(intent)
+            } else {
+                showAlert("Error correo")
+            }
+        }
 
     }
+
+
     fun setup() {
         // Aquí pondremos la lógica de los botones de autenticación
         btnAceptar.setOnClickListener {
@@ -87,6 +103,7 @@ class RegistroActivity : AppCompatActivity() {
 
                         user.text.clear()
                         password.text.clear()
+                        showActivity(user.text.toString())
                         onClick()
 
 
@@ -125,5 +142,17 @@ class RegistroActivity : AppCompatActivity() {
         val dialogo: AlertDialog = builder.create()//lo creamos para luego mostrarlos como Toast
         dialogo.show()
     }
+    private fun showActivity(email: String) {
+        if(checkPaciente.isChecked()){
+            startActivity(Intent(this, RegistroPacienteActivity::class.java))
+
+        } else {
+            Toast.makeText(this,"El usuario ha sido registrado correctamente", Toast.LENGTH_SHORT).show()
+
+
+        }
+    }
+
+
 }
 
