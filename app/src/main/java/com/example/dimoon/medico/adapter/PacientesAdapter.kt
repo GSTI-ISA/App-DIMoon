@@ -2,6 +2,7 @@ package com.example.dimoon.medico.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.ViewCompat.setBackground
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dimoon.Paciente
 import com.example.dimoon.R
@@ -18,6 +19,7 @@ class PacientesAdapter(private val pacientesList:List<Paciente>): RecyclerView.A
 
     override fun onBindViewHolder(holder: PacientesViewHolder, position: Int) {
         // pasa por cada item y va a llamar a PacienteRender
+
         val item = pacientesList[position]//posicion a la que acceder
         holder.render(item)//Lamar a la funcion pasándole el item
     }

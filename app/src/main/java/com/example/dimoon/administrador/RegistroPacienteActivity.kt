@@ -9,7 +9,6 @@ import android.widget.EditText
 import android.widget.Spinner
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.example.dimoon.InicioActivity
 import com.example.dimoon.R
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
@@ -26,6 +25,7 @@ class RegistroPacienteActivity : AppCompatActivity() {
     private lateinit var buttonCancelarRegistro: Button
     private lateinit var email: String
     private lateinit var spinnerMedicos: Spinner
+    private lateinit var foto: EditText
 
 
 
@@ -41,6 +41,7 @@ class RegistroPacienteActivity : AppCompatActivity() {
         nombrePacR = findViewById(R.id.editTextNombreR)
         apellidosPacR = findViewById(R.id.editTextApellidosR)
         tutorPac = findViewById(R.id.editTextTutor)
+        foto = findViewById(R.id.editTextFto)
 
        // crearAdaptador()
         medicos()
@@ -95,7 +96,8 @@ class RegistroPacienteActivity : AppCompatActivity() {
             "fecha de nacimiento" to timestamp,
             "enfermedad" to spinnerEnfermedad.selectedItem.toString(),
             "Tutor legal" to tutorPac.text.toString(),
-            "medico" to spinnerMedicos.selectedItem.toString()
+            "medico" to spinnerMedicos.selectedItem.toString(),
+            "foto" to foto.text.toString()
         )
         val myDoc = myCol.document(email).set(nuevaInfo)
             .addOnSuccessListener {

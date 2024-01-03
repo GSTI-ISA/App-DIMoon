@@ -50,4 +50,6 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-analytics:17.2.1")
     implementation ("com.google.firebase:firebase-database:20.3.0")
+    implementation ("com.github.bumptech.glide:glide:4.16.0")
+
 }

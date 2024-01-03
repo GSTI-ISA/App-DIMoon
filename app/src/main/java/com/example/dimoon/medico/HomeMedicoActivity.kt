@@ -68,9 +68,10 @@ class HomeMedicoActivity : AppCompatActivity() {
                     // Crea un objeto Paciente y agrégalo a la lista
                     val nombrePaciente = document.getString("nombre") ?: ""
                     val enfermedadPaciente = document.getString("enfermedad") ?: ""
+                    val fotoPaciente = document.getString("foto") ?: ""
 
 
-                    val paciente = Paciente(nombrePaciente, enfermedadPaciente)
+                    val paciente = Paciente(nombrePaciente, enfermedadPaciente,fotoPaciente)
                     pacientesList.add(paciente)
                     Log.d("Firestore", "Paciente List: $pacientesList")
                     initRecyclerView(pacientesList)

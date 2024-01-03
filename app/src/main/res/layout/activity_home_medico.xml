@@ -9,10 +9,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerPacientes"
-        android:layout_width="331dp"
-        android:layout_height="321dp"
-        android:background="@drawable/textgap"
-        android:paddingLeft="50dp"
+        android:layout_width="386dp"
+        android:layout_height="619dp"
         android:paddingTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
