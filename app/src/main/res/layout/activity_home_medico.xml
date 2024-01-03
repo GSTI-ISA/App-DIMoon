@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".medico.HomeMedicoActivity">
+    tools:context=".medico.HomeMedicoActivity"
+    android:background="@drawable/fondomedico">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Médico"
-        android:textSize="40dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/RecyclerPacientes"
+        android:layout_width="331dp"
+        android:layout_height="321dp"
+        android:background="@drawable/textgap"
+        android:paddingLeft="50dp"
+        android:paddingTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

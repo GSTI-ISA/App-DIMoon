@@ -94,7 +94,8 @@ class RegistroPacienteActivity : AppCompatActivity() {
             "apellidos" to apellidosPacR.text.toString(),
             "fecha de nacimiento" to timestamp,
             "enfermedad" to spinnerEnfermedad.selectedItem.toString(),
-            "Tutor legal" to tutorPac.text.toString()
+            "Tutor legal" to tutorPac.text.toString(),
+            "medico" to spinnerMedicos.selectedItem.toString()
         )
         val myDoc = myCol.document(email).set(nuevaInfo)
             .addOnSuccessListener {

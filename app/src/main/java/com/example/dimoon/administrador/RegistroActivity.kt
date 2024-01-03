@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.example.dimoon.AuthActivity
 import com.example.dimoon.InicioActivity
 import com.example.dimoon.R
 import com.example.dimoon.medico.HomeMedicoActivity
@@ -53,16 +54,11 @@ class RegistroActivity : AppCompatActivity() {
             user.text.clear()
             password.text.clear()
             onClick()
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+
         }
-        btnAceptar.setOnClickListener{
-            if (user.text.toString().isNotEmpty()) {
-                val intent = Intent(this, RegistroPacienteActivity::class.java)
-                intent.putExtra("user", user.text.toString())
-                startActivity(intent)
-            } else {
-                showAlert("Error correo")
-            }
-        }
+
 
     }
 
@@ -81,14 +77,19 @@ class RegistroActivity : AppCompatActivity() {
                         // El registro se ha hecho de forma correcta
                         //crear en la coleccion pacientes de la BD un nuevo documuento con el id del email
                         val myCol = when {
-                            checkPaciente.isChecked -> FirebaseFirestore.getInstance()
-                                .collection("Pacientes")
+                            checkPaciente.isChecked -> {
+                                FirebaseFirestore.getInstance()
+                                    .collection("Pacientes").document(user.text.toString()).set(mapOf("nombre" to ""))
+                                val intent = Intent(this, RegistroPacienteActivity::class.java)
+                                intent.putExtra("user", user.text.toString())
+                                startActivity(intent)
+                            }
 
                             checkMedico.isChecked -> FirebaseFirestore.getInstance()
-                                .collection("Medicos")
+                                .collection("Medicos").document(user.text.toString()).set(mapOf("nombre" to ""))
 
                             checkTutor.isChecked -> FirebaseFirestore.getInstance()
-                                .collection("Tutores")
+                                .collection("Tutores").document(user.text.toString()).set(mapOf("nombre" to ""))
 
                             else-> {
                                 showAlert("Por favor, seleccione un tipo de usuario")
@@ -97,19 +98,18 @@ class RegistroActivity : AppCompatActivity() {
 
                         }
 
-                        myCol.document(user.text.toString()).set(mapOf("nombre" to ""))
-                        Log.i("INFO", "El usuario se ha registrado correctamente")
-
+                        showAlert("El usuario se ha registrado correctamente")
 
                         user.text.clear()
                         password.text.clear()
-                        showActivity(user.text.toString())
                         onClick()
+
+                        showActivity(user.text.toString())
+
+
 
 
                     } else {
-                        // Si ha habido algún fallo que aparezca un Toast
-                        //Toast.makeText(this,"Fallo en el registro",Toast.LENGTH_SHORT).show()
                         showAlert("Ha habido un fallo en el registro")
                     }
                 }
@@ -143,11 +143,14 @@ class RegistroActivity : AppCompatActivity() {
         dialogo.show()
     }
     private fun showActivity(email: String) {
-        if(checkPaciente.isChecked()){
+        if(checkPaciente.isChecked){
             startActivity(Intent(this, RegistroPacienteActivity::class.java))
 
+        } else if (checkMedico.isChecked) {
+            startActivity(Intent(this, RegistroMedicoActivity::class.java))
+
         } else {
-            Toast.makeText(this,"El usuario ha sido registrado correctamente", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,"Elige un rol", Toast.LENGTH_SHORT).show()
 
 
         }

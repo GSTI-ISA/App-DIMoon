@@ -10,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat.startActivity
 import com.example.dimoon.R
 import com.example.dimoon.administrador.RegistroActivity
+import com.example.dimoon.administrador.RegistroPacienteActivity
 import com.example.dimoon.medico.HomeMedicoActivity
 import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.Firebase
@@ -40,6 +41,7 @@ class AuthActivity : AppCompatActivity() {
             intent = Intent(this, InicioActivity::class.java)
             startActivity(intent)
         }*/
+
 
     }
 
@@ -94,8 +96,9 @@ class AuthActivity : AppCompatActivity() {
             } else {
                 medicoCol.document(email).get().addOnSuccessListener { medicoDocument ->
                     if (medicoDocument.exists()) {
-                        startActivity(Intent(this, HomeMedicoActivity::class.java))
-
+                        val intent = Intent(this, HomeMedicoActivity::class.java)
+                        intent.putExtra("user", email)
+                        startActivity(intent)
                     } else {
                         tutorCol.document(email).get().addOnSuccessListener { TutorDocument ->
                             if (TutorDocument.exists()) {
