@@ -1,22 +1,19 @@
 package com.example.dimoon.medico
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dimoon.InicioActivity
 import com.example.dimoon.Paciente
 import com.example.dimoon.R
+import com.example.dimoon.medico.adapter.PacienteClickListener
 import com.example.dimoon.medico.adapter.PacientesAdapter
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.firestore.FirebaseFirestore
-import java.util.Calendar
 
 class HomeMedicoActivity : AppCompatActivity() {
     private lateinit var listadoPac: RecyclerView
@@ -69,9 +66,10 @@ class HomeMedicoActivity : AppCompatActivity() {
                     val nombrePaciente = document.getString("nombre") ?: ""
                     val enfermedadPaciente = document.getString("enfermedad") ?: ""
                     val fotoPaciente = document.getString("foto") ?: ""
+                    val emailPaciente = document.id
 
 
-                    val paciente = Paciente(nombrePaciente, enfermedadPaciente,fotoPaciente)
+                    val paciente = Paciente(nombrePaciente, enfermedadPaciente,fotoPaciente,emailPaciente)
                     pacientesList.add(paciente)
                     Log.d("Firestore", "Paciente List: $pacientesList")
                     initRecyclerView(pacientesList)
@@ -88,7 +86,16 @@ class HomeMedicoActivity : AppCompatActivity() {
         //recuperar recyclerView
         listadoPac.layoutManager = LinearLayoutManager(this)
 
-        listadoPac.adapter = PacientesAdapter(pacientesList)
+        listadoPac.adapter = PacientesAdapter(pacientesList,object : PacienteClickListener{
+            override fun onPacienteClick(paciente: Paciente) {
+                Toast.makeText(this@HomeMedicoActivity, paciente.nombre, Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this@HomeMedicoActivity, ShowPacienteActivity::class.java)
+                intent.putExtra("emailPaciente", paciente.email)
+                startActivity(intent)
+
+            }
+        })
     }
 
 

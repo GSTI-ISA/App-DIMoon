@@ -1,6 +1,7 @@
 package com.example.dimoon.administrador
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -12,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.dimoon.R
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.text.SimpleDateFormat
 
 
@@ -26,11 +29,12 @@ class RegistroPacienteActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var spinnerMedicos: Spinner
     private lateinit var foto: EditText
+    private lateinit var buttonFoto: Button
+    private lateinit var mStorage: StorageReference
+
+    private  val GALLERY_INTENT = 1
 
 
-
-
-    private val opciones = arrayOf("TAE", "Síndrome de Down", "Síndrome de Angelman")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +46,15 @@ class RegistroPacienteActivity : AppCompatActivity() {
         apellidosPacR = findViewById(R.id.editTextApellidosR)
         tutorPac = findViewById(R.id.editTextTutor)
         foto = findViewById(R.id.editTextFto)
+        buttonFoto = findViewById(R.id.buttonFoto)
+
+        var mStorage = FirebaseStorage.getInstance().reference
+        buttonFoto.setOnClickListener{
+            subirFoto()
+
+        }
+
+
 
        // crearAdaptador()
         medicos()
@@ -77,6 +90,26 @@ class RegistroPacienteActivity : AppCompatActivity() {
         spinnerEnfermedad.adapter = adaptador
     }*/
 
+    fun subirFoto(){
+        intent = Intent(Intent.ACTION_PICK)
+        intent.setType("image/*")
+        startActivityForResult(intent, GALLERY_INTENT)
+
+    }
+
+   /* fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent){
+        super.onActivityResult(requestCode,resultCode,data)
+        //comproba que tenemos la foto subida
+        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK)
+            //guardamos foto de galeria
+            val uri: Uri? = data?.data
+            val filePath: StorageReference = mStorage.child(uri.lastPathSegment)
+
+        filePath.putFile(uri).addOnSuccessListener {
+
+        }
+
+    }*/
 
     private fun almacenarInfoBD() {
         //accedemos a la BD
