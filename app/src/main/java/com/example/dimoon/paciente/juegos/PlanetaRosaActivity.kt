@@ -29,37 +29,31 @@ class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -
         var eraserButton = findViewById<ImageButton>(R.id.eraser)
 
         redButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.RED
             currentColor(paintBrush.color)
         }
 
         blueButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.BLUE
             currentColor(paintBrush.color)
         }
 
         greenButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.GREEN
             currentColor(paintBrush.color)
         }
 
         yellowButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.YELLOW
             currentColor(paintBrush.color)
         }
 
         blackButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             paintBrush.color = Color.BLACK
             currentColor(paintBrush.color)
         }
 
         eraserButton.setOnClickListener {
-            Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show()
             pathList.clear()
             colorList.clear()
             path.reset()
