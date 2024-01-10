@@ -8,4 +8,13 @@
     <string name="MensajeInicial"> ¡Ayuda a Didi a llegar al planeta azul!</string>
 
 
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+
+    
+    
+
+
 </resources>

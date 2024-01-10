@@ -1,16 +1,14 @@
 package com.example.dimoon
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.startActivity
-import com.example.dimoon.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dimoon.administrador.RegistroActivity
-import com.example.dimoon.administrador.RegistroPacienteActivity
 import com.example.dimoon.medico.HomeMedicoActivity
 import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.Firebase
@@ -82,6 +80,11 @@ class AuthActivity : AppCompatActivity() {
         dialogo.show()
     }
 
+    //para no poder ir para atras cuan estes en este activity
+    @SuppressLint("MissingSuperCall")
+    override fun onBackPressed() {
+    }
+
 
     private fun showHome(email: String) {
         val pacienteCol = FirebaseFirestore.getInstance().collection("Pacientes")
@@ -91,7 +94,9 @@ class AuthActivity : AppCompatActivity() {
 
         pacienteCol.document(email).get().addOnSuccessListener {
             if (it.exists()) {
-                startActivity(Intent(this, HomePacienteActivity::class.java))
+                val intent = Intent(this, HomePacienteActivity::class.java)
+                intent.putExtra("user", email)
+                startActivity(intent)
 
             } else {
                 medicoCol.document(email).get().addOnSuccessListener { medicoDocument ->

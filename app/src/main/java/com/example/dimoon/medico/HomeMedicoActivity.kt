@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dimoon.InicioActivity
@@ -12,16 +14,24 @@ import com.example.dimoon.Paciente
 import com.example.dimoon.R
 import com.example.dimoon.medico.adapter.PacienteClickListener
 import com.example.dimoon.medico.adapter.PacientesAdapter
+import com.example.dimoon.paciente.BasePaciente
 import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.firestore.FirebaseFirestore
 
-class HomeMedicoActivity : AppCompatActivity() {
+class HomeMedicoActivity : BasePaciente() {
     private lateinit var listadoPac: RecyclerView
     private lateinit var email: String
     private lateinit var pacientesList: ArrayList<Paciente>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_medico)
+
+        //AÑADIR MENU
+        val toolbar: Toolbar = findViewById(R.id.tooolbar_main)
+        setSupportActionBar(toolbar)
+
+        setupDrawer(toolbar)
+        //----------------------------------------------------
 
         listadoPac = findViewById(R.id.RecyclerPacientes)
         email = intent.getStringExtra("user") ?: ""//email medico

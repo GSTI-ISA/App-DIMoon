@@ -16,6 +16,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dimoon.R
+import com.example.dimoon.medico.ShowPacienteActivity
 import com.example.dimoon.paciente.HomePacienteActivity
 import java.util.Locale
 
@@ -288,6 +289,8 @@ class PlanetaMoradoActivity : AppCompatActivity() {
                     pausarSonido()
                     val intent = Intent(this, HomePacienteActivity::class.java)
                     startActivity(intent)
+                    //val intent2 = Intent(this, ShowPacienteActivity::class.java)
+                    //intent2.putExtra("tiempo_parejas", tiempo)
 
                 })
             builder.show()

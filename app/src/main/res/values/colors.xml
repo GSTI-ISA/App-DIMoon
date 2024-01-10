@@ -5,4 +5,7 @@
     <color name="colorSecondary">#FFFDE4</color>
     <color name="colorButton">#D6E6FA</color>
     <color name="colorTitle">#172A42</color>
+
+    <color name="colorComplementario">#fef599</color>
+
 </resources>
