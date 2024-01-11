@@ -6,4 +6,8 @@
     <color name="green">#3cb371</color>
     <color name="blue">#0000ff</color>
     <color name="yellow">#ffa500</color>
+    <color name="primary">#005AA7</color>
+    <color name="primary_variant">#76BDFA</color>
+    <color name="secondary">#FFFDE4</color>
+    <color name="secondary_variant">#FEF9BC</color>
 </resources>
