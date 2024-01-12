@@ -1,9 +1,193 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".paciente.juegos.PlanetaRojoActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:orientation="vertical"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:padding="8dp"
+android:background="@drawable/fondocartas"
+tools:context=".paciente.juegos.PlanetaRojoActivity"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="50dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/bananaImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/banana"></ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/peraImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/pera"></ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/sandiaImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sandia"></ImageButton>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/naranjaImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/naranja"></ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/limonImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/limon"></ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="25dp">
+
+        <ImageButton
+            android:id="@+id/granadaImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@null"
+            android:scaleType="fitCenter"
+            android:src="@drawable/granada"></ImageButton>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_gravity="center">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="25dp"
+        android:layout_marginRight="8dp">
+        <ImageButton
+            android:id="@+id/higoImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/higo"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter">
+        </ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="25dp"
+        android:layout_marginRight="8dp">
+        <ImageButton
+            android:id="@+id/mandarinaImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/mandarina"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter">
+        </ImageButton>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        app:cardCornerRadius="25dp">
+        <ImageButton
+            android:id="@+id/arandanosImageButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/arandanos"
+            android:background="@null"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter">
+        </ImageButton>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+<ImageView
+    android:layout_marginTop="20dp"
+    android:layout_width="147dp"
+    android:layout_height="228dp"
+    android:layout_gravity="center"
+    android:src="@drawable/repeat" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="¡Repite las palabras para aprenderlas!"
+    android:textStyle="bold"
+    android:textColor="@color/white"
+    android:layout_gravity="center_horizontal"
+    android:textSize="20dp"/>
+</LinearLayout>
