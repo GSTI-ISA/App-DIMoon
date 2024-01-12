@@ -1,16 +1,21 @@
 package com.example.dimoon.paciente.juegos
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Path
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.dimoon.R
+import com.example.dimoon.paciente.HomePacienteActivity
 import com.example.dimoon.paciente.juegos.PaintView.Companion.colorList
 import com.example.dimoon.paciente.juegos.PaintView.Companion.currentBrush
 import com.example.dimoon.paciente.juegos.PaintView.Companion.pathList
+import com.example.dimoon.paciente.juegos.PlanetaRosaActivity.Companion.path
 
 class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -> Habilidad Motora
     companion object {
@@ -27,6 +32,8 @@ class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -
         var yellowButton = findViewById<ImageButton>(R.id.yellowColor)
         var blackButton = findViewById<ImageButton>(R.id.blackColor)
         var eraserButton = findViewById<ImageButton>(R.id.eraser)
+
+        var endGame = findViewById<Button>(R.id.endGameButton)
 
         redButton.setOnClickListener {
             paintBrush.color = Color.RED
@@ -57,6 +64,17 @@ class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -
             pathList.clear()
             colorList.clear()
             path.reset()
+        }
+
+        endGame.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("ENHORABUENA").setMessage("¡Has hecho un dibujo preciso!")
+                .setCancelable(false).setPositiveButton("PROXIMA AVENTURA",
+                DialogInterface.OnClickListener { dialogInterface, i ->
+                    val intent = Intent(this, HomePacienteActivity::class.java)
+                    startActivity(intent)
+                })
+            builder.show()
         }
     }
 

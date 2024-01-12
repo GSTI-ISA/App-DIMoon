@@ -18,7 +18,7 @@ class PaintView:View {
     companion object{
         var pathList = ArrayList<Path>()
         var colorList = ArrayList<Int>()
-        var currentBrush = Color.BLACK
+        var currentBrush = Color.BLACK // Color por defecto
     }
     constructor(context: Context) : this(context, null){
         init()
@@ -31,16 +31,16 @@ class PaintView:View {
     }
 
     private fun init(){
-        paintBrush.isAntiAlias = true
-        paintBrush.color = currentBrush
+        paintBrush.isAntiAlias = true // Smooth edges
+        paintBrush.color = currentBrush // color del paintbrush
         paintBrush.style = Paint.Style.STROKE
-        paintBrush.strokeJoin = Paint.Join.ROUND
+        paintBrush.strokeJoin = Paint.Join.ROUND // Finales redondos
         paintBrush.strokeWidth=8f
 
         params = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
+    override fun onTouchEvent(event: MotionEvent?): Boolean { // Seguir recorrido del dedo
         var x = event!!.x
         var y = event!!.y
 
@@ -61,7 +61,7 @@ class PaintView:View {
         return false
     }
 
-    override fun onDraw(canvas: Canvas) {
+    override fun onDraw(canvas: Canvas) { // Que dibuje el recorrido del dedo
         for (i in pathList.indices){
             paintBrush.setColor(colorList[i])
             canvas.drawPath(pathList[i], paintBrush)
