@@ -15,7 +15,6 @@ import com.example.dimoon.paciente.HomePacienteActivity
 import com.example.dimoon.paciente.juegos.PaintView.Companion.colorList
 import com.example.dimoon.paciente.juegos.PaintView.Companion.currentBrush
 import com.example.dimoon.paciente.juegos.PaintView.Companion.pathList
-import com.example.dimoon.paciente.juegos.PlanetaRosaActivity.Companion.path
 
 class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -> Habilidad Motora
     companion object {
@@ -77,7 +76,6 @@ class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -
             builder.show()
         }
     }
-
     private fun currentColor(color:Int){
         currentBrush = color
         path = Path()
