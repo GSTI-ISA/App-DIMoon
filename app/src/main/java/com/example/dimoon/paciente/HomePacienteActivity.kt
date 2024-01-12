@@ -12,12 +12,14 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.dimoon.R
 import com.example.dimoon.paciente.juegos.PlanetaMoradoActivity
 import com.example.dimoon.paciente.juegos.PlanetaRojoActivity
 import com.example.dimoon.paciente.juegos.PlanetaRosaActivity
 import com.example.dimoon.paciente.juegos.PlanetaVerdeActivity
+import kotlin.properties.Delegates
 
 
 class HomePacienteActivity : BasePaciente() {
@@ -37,6 +39,7 @@ class HomePacienteActivity : BasePaciente() {
     private var planet3Enabled = false
     private var planet4Enabled = false
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_paciente)
@@ -47,6 +50,13 @@ class HomePacienteActivity : BasePaciente() {
 
         setupDrawer(toolbar)
         //----------------------------------------------------
+
+
+        //PLANETA VERDE FINISH--> BOTON 2 Y 3 HABILITADOS
+        val enableButton2 = intent.getBooleanExtra("enableButton2", false)
+        val enableButton3 = intent.getBooleanExtra("enableButton3", false)
+        val enableButton4 = intent.getBooleanExtra("enableButton4", false)
+
 
 
         //email = intent.getStringExtra("user") ?: ""//email paciente
@@ -105,7 +115,22 @@ class HomePacienteActivity : BasePaciente() {
             startActivity(intent)
         }
 
+        //habilitar botones despues de planeta verde y morado
 
+        if (enableButton2) {
+            enableButton(btnPlanet2)
+            planet2Enabled= true
+        }
+
+        if (enableButton3) {
+            enableButton(btnPlanet3)
+            planet3Enabled = true
+        }
+        if (enableButton4) {
+            enableButton(btnPlanet4)
+            planet4Enabled = true
+        }
+        //---------------------------------------
 
 
     }

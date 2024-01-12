@@ -20,6 +20,9 @@ import com.example.dimoon.R
 import com.example.dimoon.medico.ShowPacienteActivity
 import com.example.dimoon.paciente.BasePaciente
 import com.example.dimoon.paciente.HomePacienteActivity
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
 
 
@@ -298,9 +301,13 @@ class PlanetaMoradoActivity : BasePaciente() {
                 DialogInterface.OnClickListener{dialogInterface,i->
                     pausarSonido()
                     val intent = Intent(this, HomePacienteActivity::class.java)
+                    intent.putExtra("enableButton2", true)
+                    intent.putExtra("enableButton3", true)
+                    intent.putExtra("enableButton4", true)
                     startActivity(intent)
                     //val intent2 = Intent(this, ShowPacienteActivity::class.java)
                     //intent2.putExtra("tiempo_parejas", tiempo)
+                    almacenarPuntuacionBD(tiempo)
 
                 })
             builder.show()
@@ -340,5 +347,41 @@ class PlanetaMoradoActivity : BasePaciente() {
         cronometroContador.start()
     }
 
+    private fun almacenarPuntuacionBD(tiempo: String) {
+        //accedemos a la BD
+        val myBD = FirebaseFirestore.getInstance()
+        //colección: "pacientes"
+        val myCol = myBD.collection("Pacientes")
+
+
+
+        //paciente
+        var user = Firebase.auth.currentUser?.email.toString()
+
+
+        val myDoc = myCol.document(user).update("tiempoParejas", tiempo)
+            .addOnSuccessListener {
+                showAlert("Datos actualizados")
+            }
+            .addOnFailureListener { e ->
+                showAlert("Error")
+            }
+
+
+    }
+    private fun showAlert(text: String) {// recibe texto
+        //builder sirve para construir cosas dificiles con este patron. Es como un constructor pero que ya viene hecho
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder
+            .setTitle("Error")
+            .setMessage(text)
+            .setPositiveButton(
+                "ACEPTAR",
+                null
+            )// no queremos que haga nada--> null(haciendo que se cierre)
+
+        val dialogo: AlertDialog = builder.create()//lo creamos para luego mostrarlos como Toast
+        dialogo.show()
+    }
 }
 

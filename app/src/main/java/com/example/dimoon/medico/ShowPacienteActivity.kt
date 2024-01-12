@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.dimoon.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -14,6 +15,10 @@ class ShowPacienteActivity : AppCompatActivity() {
     private  lateinit var enfermedadPac: TextView
     private  lateinit var fotoPac: ImageView
 
+    private  lateinit var puntuacionQ: TextView
+    private  lateinit var tiempoP: TextView
+
+
     private lateinit var emailPaciente: String
 
 
@@ -23,9 +28,13 @@ class ShowPacienteActivity : AppCompatActivity() {
 
 
         emailPaciente = intent.getStringExtra("emailPaciente") ?: ""//email paciente click
+
+
+
         nombrePac = findViewById(R.id.textViewNombre)
         enfermedadPac = findViewById(R.id.textViewEnfermedad)
         fotoPac = findViewById(R.id.ivPacienteClick)
+        puntuacionQ = findViewById(R.id.puntuacionQuiz)
         mostrarInfoPaciente()
     }
     private fun mostrarInfoPaciente(){
@@ -40,8 +49,15 @@ class ShowPacienteActivity : AppCompatActivity() {
 
             var foto = if(it.get("foto").toString()!="null") it.get("foto").toString() else ""
 
+            var quiz = if(it.get("puntuacionQuiz").toString()!="null") it.get("puntuacionQuiz").toString() else ""
+
+            var tiempo = if(it.get("tiempoParejas").toString()!="null") it.get("tiempoParejas").toString() else ""
+
+
             nombrePac.setText(nombre+" "+apellido)
+            puntuacionQ.setText(quiz)
             enfermedadPac.setText(enfermedad)
+            tiempoP.setText(tiempo)
             Glide.with(this)
                 .load(foto)
                 .into(fotoPac)

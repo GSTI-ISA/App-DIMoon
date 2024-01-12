@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -12,9 +13,18 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.postDelayed
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.dimoon.Paciente
 import com.example.dimoon.R
+import com.example.dimoon.medico.ShowPacienteActivity
+import com.example.dimoon.medico.adapter.PacienteClickListener
+import com.example.dimoon.medico.adapter.PacientesAdapter
 import com.example.dimoon.paciente.HomePacienteActivity
+import com.google.firebase.Firebase
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
 
 class QuizActivity : AppCompatActivity(), View.OnClickListener {
     private val questionList = mutableListOf<Pregunta>()
@@ -124,9 +134,11 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             .setPositiveButton("PROXIMA AVENTURA",
                 DialogInterface.OnClickListener { dialogInterface, i ->
                     val intent = Intent(this, HomePacienteActivity::class.java)
+                    intent.putExtra("enableButton2", true)
+                    intent.putExtra("enableButton3", true)
                     startActivity(intent)
-                    //val intent2 = Intent(this, ShowPacienteActivity::class.java)
-                    //intent2.putExtra("tiempo_parejas", tiempo)
+                    almacenarPuntuacionBD(percentage)
+
 
                 })
         builder.show()
@@ -156,11 +168,50 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             currentQuestionIndex++
             Handler(Looper.getMainLooper()).postDelayed({
                 showNextQuestion(clickedButton)
-                                }, 2000)
-            Toast.makeText(this, "$preguntasRespondidas", Toast.LENGTH_SHORT).show()
+                                }, 1000)
+            //Toast.makeText(this, "$preguntasRespondidas", Toast.LENGTH_SHORT).show()
 
         }
 
 
     }
+
+
+    private fun almacenarPuntuacionBD(puntuacion: Int) {
+        //accedemos a la BD
+        val myBD = FirebaseFirestore.getInstance()
+        //colección: "pacientes"
+        val myCol = myBD.collection("Pacientes")
+
+
+
+        //paciente
+        var user = Firebase.auth.currentUser?.email.toString()
+
+
+        val myDoc = myCol.document(user).update("puntuacionQuiz", puntuacion)
+            .addOnSuccessListener {
+                showAlert("Datos actualizados")
+            }
+            .addOnFailureListener { e ->
+                showAlert("Error")
+            }
+
+
+    }
+    private fun showAlert(text: String) {// recibe texto
+        //builder sirve para construir cosas dificiles con este patron. Es como un constructor pero que ya viene hecho
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder
+            .setTitle("Error")
+            .setMessage(text)
+            .setPositiveButton(
+                "ACEPTAR",
+                null
+            )// no queremos que haga nada--> null(haciendo que se cierre)
+
+        val dialogo: AlertDialog = builder.create()//lo creamos para luego mostrarlos como Toast
+        dialogo.show()
+    }
+
 }
