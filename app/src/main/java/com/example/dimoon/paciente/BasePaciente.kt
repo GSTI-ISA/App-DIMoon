@@ -57,6 +57,8 @@ open class BasePaciente : AppCompatActivity(), NavigationView.OnNavigationItemSe
         var id: Int = item.itemId
 
         if (id == R.id.nav_item_one) {
+            val user = Firebase.auth.currentUser // Acceder al usuario autenticado ahora mismo
+
             startActivity(Intent(this, HomePacienteActivity::class.java))
         } else if (id == R.id.nav_item_four) {
             startActivity(Intent(this, PerfilPacienteActivity::class.java))

@@ -6,13 +6,13 @@
             android:title="Home"/>
         <item android:id="@+id/nav_item_four"
             android:icon="@drawable/profile_svgrepo_com"
-            android:title="Profile"/>
+            android:title="Perfil"/>
         <item android:id="@+id/nav_item_two"
             android:icon="@drawable/settings_svgrepo_com"
-            android:title="Settings"/>
+            android:title="Ajustes"/>
         <item android:id="@+id/nav_item_three"
             android:icon="@drawable/information_svgrepo_com"
-            android:title="About us"/>
+            android:title="Sobre nosotros"/>
 
     </group>
 
@@ -20,7 +20,7 @@
         <menu>
             <item android:id="@+id/nav_item_five"
                 android:icon="@drawable/logout_3_svgrepo_com__1_"
-                android:title="Logout"/>
+                android:title="Cerrar Sesión"/>
         </menu>
     </item>
 

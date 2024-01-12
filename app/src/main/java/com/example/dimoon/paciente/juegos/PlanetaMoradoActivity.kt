@@ -15,13 +15,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.example.dimoon.R
 import com.example.dimoon.medico.ShowPacienteActivity
+import com.example.dimoon.paciente.BasePaciente
 import com.example.dimoon.paciente.HomePacienteActivity
 import java.util.Locale
 
 
-class PlanetaMoradoActivity : AppCompatActivity() {
+class PlanetaMoradoActivity : BasePaciente() {
     private  lateinit var  iv_11:ImageView
     private  lateinit var  iv_12:ImageView
     private  lateinit var  iv_13:ImageView
@@ -58,6 +60,14 @@ class PlanetaMoradoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planeta_morado)
+
+        //AÑADIR MENU
+        val toolbar: Toolbar = findViewById(R.id.tooolbar_main)
+        setSupportActionBar(toolbar)
+
+        setupDrawer(toolbar)
+        //----------------------------------------------------
+
 
         iv_11 = findViewById(R.id.iv_11)
         iv_12 = findViewById(R.id.iv_12)

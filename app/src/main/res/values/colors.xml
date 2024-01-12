@@ -6,6 +6,16 @@
     <color name="colorButton">#D6E6FA</color>
     <color name="colorTitle">#172A42</color>
 
+    <color name="primary">#005AA7</color>
+    <color name="primary_variant">#76BDFA</color>
+    <color name="secondary">#FFFDE4</color>
+    <color name="secondary_variant">#FEF9BC</color>
+
     <color name="colorComplementario">#fef599</color>
+
+
+    <color name="pregunta_correcta">#9FFF32</color>
+
+    <color name="pregunta_incorrecta">#FF3232</color>
 
 </resources>

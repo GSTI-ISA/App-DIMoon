@@ -86,6 +86,7 @@ class AuthActivity : AppCompatActivity() {
     }
 
 
+
     private fun showHome(email: String) {
         val pacienteCol = FirebaseFirestore.getInstance().collection("Pacientes")
         val medicoCol = FirebaseFirestore.getInstance().collection("Medicos")

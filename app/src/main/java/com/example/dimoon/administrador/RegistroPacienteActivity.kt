@@ -30,7 +30,6 @@ class RegistroPacienteActivity : AppCompatActivity() {
     private lateinit var spinnerMedicos: Spinner
     private lateinit var foto: EditText
     private lateinit var buttonFoto: Button
-    private lateinit var mStorage: StorageReference
 
     private  val GALLERY_INTENT = 1
 

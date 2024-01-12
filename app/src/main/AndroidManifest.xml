@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DIMoon"
         tools:targetApi="31">
         <activity
+            android:name=".paciente.juegos.QuizActivity"
+            android:exported="false" />
+        <activity
             android:name=".medico.ShowPacienteActivity"
             android:exported="false" />
         <activity
@@ -43,7 +46,13 @@
             android:exported="false" />
         <activity
             android:name=".paciente.juegos.PlanetaVerdeActivity"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".paciente.juegos.PlanetaRojoActivity"
             android:exported="false" />
@@ -55,13 +64,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
