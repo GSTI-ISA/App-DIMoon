@@ -5,8 +5,13 @@
     <string name="fechaNac">Fecha de Nacimiento</string>
     <string name="diagnostico">Diagnóstico</string>
     <string name="sign_out">Cerrar Sesión</string>
-    <string name="MensajeInicial">¡Ayuda a Didi a llegar al planeta azul!</string>
+    <string name="MensajeInicial"> ¡Ayuda a Didi a llegar al planeta azul!</string>
     <string name="QuizStart">Comenzar</string>
     <string name="QuizNext">Siguiente</string>
     <string name="QuizMensajeInicial">Didi acaba de conocer a una criatura, pero no conoce las contumbres de nuestro planeta. Enséñale y hazte amigo de él.</string>
+
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
+
+
 </resources>
