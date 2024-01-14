@@ -10,13 +10,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import com.example.dimoon.R
+import com.example.dimoon.paciente.BasePaciente
 import com.example.dimoon.paciente.HomePacienteActivity
 import com.example.dimoon.paciente.juegos.PaintView.Companion.colorList
 import com.example.dimoon.paciente.juegos.PaintView.Companion.currentBrush
 import com.example.dimoon.paciente.juegos.PaintView.Companion.pathList
 
-class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -> Habilidad Motora
+class PlanetaRosaActivity : BasePaciente() { // Juego para dibujar formas -> Habilidad Motora
     companion object {
         var path = Path()
         var paintBrush = Paint()
@@ -24,6 +26,15 @@ class PlanetaRosaActivity : AppCompatActivity() { // Juego para dibujar formas -
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planeta_rosa)
+
+        //AÑADIR MENU
+        val toolbar: Toolbar = findViewById(R.id.tooolbar_main)
+        setSupportActionBar(toolbar)
+
+        setupDrawer(toolbar)
+        //----------------------------------------------------
+
+
 
         var redButton = findViewById<ImageButton>(R.id.redColor)
         var blueButton = findViewById<ImageButton>(R.id.blueColor)

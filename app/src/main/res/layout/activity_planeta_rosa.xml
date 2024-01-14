@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".paciente.juegos.PlanetaRosaActivity"
-        android:paddingTop="50dp">
+        android:paddingTop="60dp">
 
         <LinearLayout
             android:id="@+id/paintToolbar"
@@ -86,20 +86,28 @@
             <Button
                 android:id="@+id/endGameButton"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="530dp"
+                android:layout_height="58dp"
+                android:layout_marginTop="550dp"
                 android:text="Listo"
                 android:textSize="30dp"
+                android:textColor="#9B2020"
                 android:fontFamily="@font/poppins"
                 android:textAllCaps="false"
                 app:icon="@drawable/baseline_check_circle_outline_24"
-                android:background="@drawable/button_paint" />
+                android:background="@drawable/botonpaint" />
 
 
         </RelativeLayout>
 
     </RelativeLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
 
 
