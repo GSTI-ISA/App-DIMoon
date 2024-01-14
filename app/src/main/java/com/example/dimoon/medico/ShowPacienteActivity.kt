@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.Toolbar
 import com.bumptech.glide.Glide
 import com.example.dimoon.R
+import com.example.dimoon.paciente.BasePaciente
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 
-class ShowPacienteActivity : AppCompatActivity() {
+class ShowPacienteActivity : BasePaciente() {
     private  lateinit var nombrePac: TextView
     private  lateinit var enfermedadPac: TextView
     private  lateinit var fotoPac: ImageView
@@ -29,6 +31,14 @@ class ShowPacienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_paciente)
 
+        //AÑADIR MENU
+        val toolbar: Toolbar = findViewById(R.id.tooolbar_main)
+        setSupportActionBar(toolbar)
+
+        setupDrawer(toolbar)
+        //----------------------------------------------------
+
+
 
         emailPaciente = intent.getStringExtra("emailPaciente") ?: ""//email paciente click
 
@@ -36,6 +46,8 @@ class ShowPacienteActivity : AppCompatActivity() {
         enfermedadPac = findViewById(R.id.textViewEnfermedad)
         fotoPac = findViewById(R.id.ivPacienteClick)
         puntuacionQ = findViewById(R.id.textViewResTestEmocional)
+
+        tiempoP = findViewById(R.id.textViewTiempoMemoria)
 
         audio1btn = findViewById(R.id.audio1ImageButton)
         audio2btn = findViewById(R.id.audio2ImageButton)
@@ -49,6 +61,7 @@ class ShowPacienteActivity : AppCompatActivity() {
 
         mostrarInfoPaciente()
     }
+
     private fun mostrarInfoPaciente(){
         val myCol = FirebaseFirestore.getInstance().collection("Pacientes")
         // Recuperar un document a partir de su ID:
@@ -62,6 +75,7 @@ class ShowPacienteActivity : AppCompatActivity() {
             var foto = if(it.get("foto").toString()!="null") it.get("foto").toString() else ""
 
             var quiz = if(it.get("puntuacionQuiz").toString()!="null") it.get("puntuacionQuiz").toString() else ""
+
             var tiempo = if(it.get("tiempoParejas").toString()!="null") it.get("tiempoParejas").toString() else ""
 
 
@@ -69,9 +83,7 @@ class ShowPacienteActivity : AppCompatActivity() {
             puntuacionQ.setText(quiz)
             enfermedadPac.setText(enfermedad)
             tiempoP.setText(tiempo)
-            Glide.with(this)
-                .load(foto)
-                .into(fotoPac)
+            Glide.with(this).load(foto).into(fotoPac)
 
 
         }
