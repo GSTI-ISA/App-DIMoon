@@ -18,9 +18,10 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="100dp"
         android:layout_marginRight="2dp"
         android:layout_marginLeft="2dp"
+        android:layout_marginBottom="40dp"
         android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="270dp"
+            android:layout_marginTop="280dp"
             android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -300,10 +301,13 @@
                 android:layout_width="100dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
-                android:src="@drawable/perro" />
+                android:src="@drawable/perro"
+                android:layout_marginBottom="50dp"/>
         </LinearLayout>
 
     </ScrollView>
+
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
@@ -311,7 +315,5 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer" />
-
-
 
 </androidx.drawerlayout.widget.DrawerLayout>
