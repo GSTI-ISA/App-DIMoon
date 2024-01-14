@@ -143,12 +143,4 @@ class HomePacienteActivity : BasePaciente() {
         button.isEnabled = true
         button.clearColorFilter()
     }
-
-
-
-
-
-
 }
-
-

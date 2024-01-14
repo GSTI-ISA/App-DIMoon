@@ -88,8 +88,6 @@ class PlanetaMoradoActivity : BasePaciente() {
         puntuacion = findViewById(R.id.textViewPuntuacion)
         cronometro = findViewById(R.id.textViewCrono)
 
-
-
         sonido("background")
 
         //3*4 imágenes
@@ -168,9 +166,6 @@ class PlanetaMoradoActivity : BasePaciente() {
             suena = true
         }
     }
-
-
-
 
 
     fun seleccionar (imagen: View){
@@ -308,7 +303,6 @@ class PlanetaMoradoActivity : BasePaciente() {
                     //val intent2 = Intent(this, ShowPacienteActivity::class.java)
                     //intent2.putExtra("tiempo_parejas", tiempo)
                     almacenarPuntuacionBD(tiempo)
-
                 })
             builder.show()
         }
@@ -384,4 +378,3 @@ class PlanetaMoradoActivity : BasePaciente() {
         dialogo.show()
     }
 }
-

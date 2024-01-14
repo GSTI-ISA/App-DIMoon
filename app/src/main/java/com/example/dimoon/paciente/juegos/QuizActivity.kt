@@ -66,10 +66,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-
         fetchQuestionsFromFirebase()
-
-
     }
 
 
@@ -116,9 +113,7 @@ class QuizActivity : AppCompatActivity(), View.OnClickListener {
             btn2.text = currentQuestion.options[2]
             btn3.text = currentQuestion.options[3]
 
-
             preguntasRespondidas++
-
 
         } else {
             finishQuiz()

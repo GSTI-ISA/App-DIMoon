@@ -1,10 +1,10 @@
 package com.example.dimoon.medico
 
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.dimoon.R
 import com.google.firebase.firestore.FirebaseFirestore
@@ -15,9 +15,12 @@ class ShowPacienteActivity : AppCompatActivity() {
     private  lateinit var enfermedadPac: TextView
     private  lateinit var fotoPac: ImageView
 
+    private var mediaPlayer: MediaPlayer? = null
+    private lateinit var audio1btn : ImageView
+    private lateinit var audio2btn : ImageView
+
     private  lateinit var puntuacionQ: TextView
     private  lateinit var tiempoP: TextView
-
 
     private lateinit var emailPaciente: String
 
@@ -29,12 +32,21 @@ class ShowPacienteActivity : AppCompatActivity() {
 
         emailPaciente = intent.getStringExtra("emailPaciente") ?: ""//email paciente click
 
-
-
         nombrePac = findViewById(R.id.textViewNombre)
         enfermedadPac = findViewById(R.id.textViewEnfermedad)
         fotoPac = findViewById(R.id.ivPacienteClick)
-        puntuacionQ = findViewById(R.id.puntuacionQuiz)
+        puntuacionQ = findViewById(R.id.textViewResTestEmocional)
+
+        audio1btn = findViewById(R.id.audio1ImageButton)
+        audio2btn = findViewById(R.id.audio2ImageButton)
+
+        audio1btn.setOnClickListener {
+            sonido("nino1")
+        }
+        audio2btn.setOnClickListener {
+            sonido("nino2")
+        }
+
         mostrarInfoPaciente()
     }
     private fun mostrarInfoPaciente(){
@@ -50,7 +62,6 @@ class ShowPacienteActivity : AppCompatActivity() {
             var foto = if(it.get("foto").toString()!="null") it.get("foto").toString() else ""
 
             var quiz = if(it.get("puntuacionQuiz").toString()!="null") it.get("puntuacionQuiz").toString() else ""
-
             var tiempo = if(it.get("tiempoParejas").toString()!="null") it.get("tiempoParejas").toString() else ""
 
 
@@ -64,6 +75,18 @@ class ShowPacienteActivity : AppCompatActivity() {
 
 
         }
+    }
+
+    private fun sonido(sonidoName: String) {
+        // Libera recursos si el MediaPlayer ya está inicializado
+        mediaPlayer?.release()
+
+        // Crea un nuevo MediaPlayer y carga el sonido desde res/raw
+        val resourceId = resources.getIdentifier(sonidoName, "raw", packageName)
+        mediaPlayer = MediaPlayer.create(this, resourceId)
+
+        // Inicia la reproducción
+        mediaPlayer?.start()
     }
 
 }
