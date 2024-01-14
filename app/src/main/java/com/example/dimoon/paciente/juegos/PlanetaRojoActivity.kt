@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.Toolbar
 import com.example.dimoon.R
+import com.example.dimoon.paciente.BasePaciente
 import com.example.dimoon.paciente.HomePacienteActivity
 
-class PlanetaRojoActivity : AppCompatActivity() {
+class PlanetaRojoActivity : BasePaciente() {
 
     private lateinit var btnBanana : ImageButton
     private lateinit var btnPera : ImageButton
@@ -25,6 +27,15 @@ class PlanetaRojoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_planeta_rojo)
+
+        //AÑADIR MENU
+        val toolbar: Toolbar = findViewById(R.id.tooolbar_main)
+        setSupportActionBar(toolbar)
+
+        setupDrawer(toolbar)
+        //----------------------------------------------------
+
+
 
         btnBanana = findViewById(R.id.bananaImageButton)
         btnPera = findViewById(R.id.peraImageButton)
