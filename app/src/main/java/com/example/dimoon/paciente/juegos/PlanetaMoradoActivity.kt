@@ -162,6 +162,7 @@ class PlanetaMoradoActivity : BasePaciente() {
     fun pausarSonido(){
         if (mPlayer.isPlaying) {
             mPlayer.pause()
+            mPlayer.stop() //parar sonido
             suena = false
         } else {
             mPlayer.start()

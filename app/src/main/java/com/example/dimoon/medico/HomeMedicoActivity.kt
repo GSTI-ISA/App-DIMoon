@@ -98,7 +98,7 @@ class HomeMedicoActivity : BasePaciente() {
 
         listadoPac.adapter = PacientesAdapter(pacientesList,object : PacienteClickListener{
             override fun onPacienteClick(paciente: Paciente) {
-                Toast.makeText(this@HomeMedicoActivity, paciente.nombre, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@HomeMedicoActivity, "Paciente seleccionado ${paciente.nombre}", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this@HomeMedicoActivity, ShowPacienteActivity::class.java)
                 intent.putExtra("emailPaciente", paciente.email)
