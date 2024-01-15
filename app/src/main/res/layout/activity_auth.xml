@@ -54,7 +54,7 @@
         android:ems="10"
         android:gravity="left|center"
         android:hint="Contraseña"
-        android:inputType="numberPassword"
+        android:inputType="textPassword"
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAceptar"
         app:layout_constraintEnd_toEndOf="parent"

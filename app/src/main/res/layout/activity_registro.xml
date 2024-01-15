@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".administrador.RegistroActivity"
-    android:background="@drawable/registroadmi">
+    android:background="@drawable/registroadmi"
+    tools:context=".administrador.RegistroActivity">
 
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginStart="59dp"
         android:layout_marginTop="260dp"
         android:layout_marginEnd="215dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/poppins"
         android:text="Nombre de usuario"
         android:textColor="@color/black"
@@ -31,9 +31,9 @@
         android:layout_width="296dp"
         android:layout_height="52dp"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="59dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/textgap"
         android:ems="10"
         android:gravity="left|center"
@@ -42,6 +42,7 @@
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -81,19 +82,20 @@
         app:layout_constraintTop_toTopOf="@+id/buttonAceptar"
         app:layout_constraintVertical_bias="1.0" />
 
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="247dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
         android:text="Contraseña"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/checkBoxPassword"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewUser" />
 
@@ -101,7 +103,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins"
         android:text="Rol usuario"
         android:textColor="@color/black"
@@ -128,7 +130,7 @@
         android:paddingLeft="15dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -137,13 +139,14 @@
         android:layout_width="328dp"
         android:layout_height="28dp"
         android:layout_marginStart="59dp"
-        android:layout_marginTop="223dp"
+        android:layout_marginTop="224dp"
         android:layout_marginEnd="24dp"
         android:fontFamily="@font/poppins"
         android:text="REGISTRAR NUEVO USUARIO:"
         android:textColor="#0C2157"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -160,6 +163,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/checkBoxMedico"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -178,7 +182,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxPaciente" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxPaciente"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <CheckBox
         android:id="@+id/checkBoxTutora"
@@ -194,8 +199,36 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonAceptar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkBoxMedico" />
 
+    <Button
+        android:id="@+id/buttonGenerator"
+        android:layout_width="85dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/buttonlogin"
+        android:fontFamily="@font/poppins"
+        android:text="Generar"
+        android:textAllCaps="false"
+        android:textColor="#08022E"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewPassword"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPassword"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="@+id/textViewPassword"
+        app:layout_constraintTop_toTopOf="@+id/textViewPassword" />
+
+    <CheckBox
+        android:id="@+id/checkBoxPassword"
+        android:layout_width="208dp"
+        android:layout_height="41dp"
+        android:text="Mostrar contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/textViewPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewUser" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

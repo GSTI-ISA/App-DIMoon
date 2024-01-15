@@ -8,14 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.dimoon.AuthActivity
 import com.example.dimoon.R
 import com.example.dimoon.medico.HomeMedicoActivity
+import com.example.dimoon.medico.PerfilMedicoActivity
 import com.example.dimoon.paciente.juegos.PlanetaMoradoActivity
-import com.example.dimoon.paciente.juegos.PlanetaRojoActivity
 import com.example.dimoon.paciente.juegos.PlanetaRosaActivity
 import com.example.dimoon.paciente.juegos.PlanetaVerdeActivity
 import com.google.android.material.navigation.NavigationView
@@ -57,11 +56,12 @@ open class BasePaciente : AppCompatActivity(), NavigationView.OnNavigationItemSe
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         var id: Int = item.itemId
+        val user = Firebase.auth.currentUser // Acceder al usuario autenticado ahora mismo
+        val email = user?.email.toString()
+
 
         if (id == R.id.nav_item_one) {
-            val user = Firebase.auth.currentUser // Acceder al usuario autenticado ahora mismo
             val intent = Intent(this, HomePacienteActivity::class.java)
-            val email = user?.email.toString()
 
             Toast.makeText(this, "Paciente seleccionado ${email}", Toast.LENGTH_SHORT).show()
 
@@ -99,7 +99,25 @@ open class BasePaciente : AppCompatActivity(), NavigationView.OnNavigationItemSe
                 }
             }
         } else if (id == R.id.nav_item_four) {
-            startActivity(Intent(this, PerfilPacienteActivity::class.java))
+            if (email != null) {
+                val db = FirebaseFirestore.getInstance()
+                val pacienteCol = db.collection("Pacientes")
+                val medicoCol = db.collection("Medicos")
+
+                pacienteCol.document(email).get().addOnSuccessListener {
+                    if (it.exists()) {
+                        startActivity(Intent(this, PerfilPacienteActivity::class.java))
+
+                    } else {
+                        medicoCol.document(email).get().addOnSuccessListener { medicoDocument ->
+                            if (medicoDocument.exists()) {
+                                startActivity(Intent(this, PerfilMedicoActivity::class.java))
+
+                            }
+                        }
+                    }
+                }
+            }
         } else if (id == R.id.nav_item_five) {
             Firebase.auth.signOut()
             startActivity(Intent(this, AuthActivity::class.java))

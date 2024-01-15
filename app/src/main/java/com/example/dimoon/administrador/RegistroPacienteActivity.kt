@@ -45,7 +45,6 @@ class RegistroPacienteActivity : AppCompatActivity() {
         apellidosPacR = findViewById(R.id.editTextApellidosR)
         tutorPac = findViewById(R.id.editTextTutor)
         foto = findViewById(R.id.editTextFto)
-        buttonFoto = findViewById(R.id.buttonFoto)
 
         var mStorage = FirebaseStorage.getInstance().reference
         buttonFoto.setOnClickListener{
@@ -96,19 +95,7 @@ class RegistroPacienteActivity : AppCompatActivity() {
 
     }
 
-   /* fun onActivityResult(requestCode:Int, resultCode:Int, data:Intent){
-        super.onActivityResult(requestCode,resultCode,data)
-        //comproba que tenemos la foto subida
-        if (requestCode == GALLERY_INTENT && resultCode == RESULT_OK)
-            //guardamos foto de galeria
-            val uri: Uri? = data?.data
-            val filePath: StorageReference = mStorage.child(uri.lastPathSegment)
 
-        filePath.putFile(uri).addOnSuccessListener {
-
-        }
-
-    }*/
 
     private fun almacenarInfoBD() {
         //accedemos a la BD
