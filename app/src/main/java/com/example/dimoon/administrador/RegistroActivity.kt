@@ -186,7 +186,7 @@ class RegistroActivity : AppCompatActivity() {
             startActivity(Intent(this, RegistroMedicoActivity::class.java))
 
         } else {
-            Toast.makeText(this, "Elige un rol", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(this, "Elige un rol", Toast.LENGTH_SHORT).show()
 
 
         }

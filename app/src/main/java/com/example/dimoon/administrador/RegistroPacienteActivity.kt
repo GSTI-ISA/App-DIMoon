@@ -30,7 +30,6 @@ class RegistroPacienteActivity : AppCompatActivity() {
     private lateinit var email: String
     private lateinit var spinnerMedicos: Spinner
     private lateinit var foto: EditText
-    private lateinit var buttonFoto: Button
 
     private  val GALLERY_INTENT = 1
 
@@ -47,11 +46,7 @@ class RegistroPacienteActivity : AppCompatActivity() {
         tutorPac = findViewById(R.id.editTextTutor)
         foto = findViewById(R.id.editTextFto)
 
-        var mStorage = FirebaseStorage.getInstance().reference
-        buttonFoto.setOnClickListener{
-            subirFoto()
 
-        }
 
 
 
@@ -83,18 +78,7 @@ class RegistroPacienteActivity : AppCompatActivity() {
 
     }
 
-    /*private fun crearAdaptador() {
-        val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, opciones)
-        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerEnfermedad.adapter = adaptador
-    }*/
 
-    fun subirFoto(){
-        intent = Intent(Intent.ACTION_PICK)
-        intent.setType("image/*")
-        startActivityForResult(intent, GALLERY_INTENT)
-
-    }
 
 
 
