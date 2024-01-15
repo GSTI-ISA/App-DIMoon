@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dimoon.R
@@ -120,7 +121,8 @@ class RegistroPacienteActivity : AppCompatActivity() {
         )
         val myDoc = myCol.document(email).set(nuevaInfo)
             .addOnSuccessListener {
-                showAlert("Datos actualizados")
+                Toast.makeText(this, "Datos actualizados", Toast.LENGTH_SHORT).show()
+
             }
             .addOnFailureListener { e ->
                 showAlert("Error")

@@ -167,7 +167,7 @@ class RegistroActivity : AppCompatActivity() {
         //builder sirve para construir cosas dificiles con este patron. Es como un constructor pero que ya viene hecho
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder
-            .setTitle("Error")
+            .setTitle("Información")
             .setMessage(text)
             .setPositiveButton(
                 "ACEPTAR",
