@@ -62,7 +62,7 @@ class PerfilMedicoActivity : BasePaciente() {
 
 
             var foto = if (it.get("foto").toString() != "null") it.get("foto").toString() else ""
-            showAlert("$foto")
+            //showAlert("$foto")
 
             Glide.with(this).load(foto).into(fotoPerfilPaciente)
 

@@ -45,8 +45,8 @@ class PerfilPacienteActivity : BasePaciente() {
         fotoPerfilPaciente = findViewById(R.id.ivPacienteClick)
 
 
-        textApellidos = findViewById(R.id.editTextNombre)
-        textNombre = findViewById(R.id.editTextApellidos)
+        textApellidos = findViewById(R.id.editTextApellidos)
+        textNombre = findViewById(R.id.editTextNombre)
         textFechaNac = findViewById(R.id.editTextFechaNac)
         textDiagnostico = findViewById(R.id.editTextDiagnostico)
         textTutor = findViewById(R.id.editTextTutorLegal)
@@ -85,8 +85,6 @@ class PerfilPacienteActivity : BasePaciente() {
 
             var foto = if (it.get("foto").toString() != "null") it.get("foto").toString() else ""
 
-            textNombre.setText(nombre)
-            textApellidos.setText(apellido)
             textDiagnostico.setText(enfermedad)
 
             Glide.with(this).load(foto).into(fotoPerfilPaciente)

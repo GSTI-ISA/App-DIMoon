@@ -3,6 +3,7 @@ package com.example.dimoon.administrador
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dimoon.R
+import com.example.dimoon.paciente.HomePacienteActivity
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -31,7 +33,6 @@ class RegistroPacienteActivity : AppCompatActivity() {
     private lateinit var spinnerMedicos: Spinner
     private lateinit var foto: EditText
 
-    private  val GALLERY_INTENT = 1
 
 
 
@@ -69,6 +70,12 @@ class RegistroPacienteActivity : AppCompatActivity() {
                 apellidosPacR.text.clear()
                 fechaNac.text.clear()
                 tutorPac.text.clear()
+                foto.text.clear()
+                Handler().postDelayed({
+                    startActivity(Intent(this, RegistroActivity::class.java))
+                    // Aquí puedes realizar cualquier acción adicional después del retraso
+                }, 2000)
+
             }
         } else {
             showAlert("El usuario no se ha registrado correctamente")

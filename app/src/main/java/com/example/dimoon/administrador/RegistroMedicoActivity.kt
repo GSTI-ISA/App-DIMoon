@@ -3,9 +3,11 @@ package com.example.dimoon.administrador
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.dimoon.R
 import com.google.firebase.Timestamp
@@ -49,6 +51,10 @@ class RegistroMedicoActivity : AppCompatActivity() {
                 nombrePacR.text.clear()
                 especialidadPacR.text.clear()
                 foto.text.clear()
+                Handler().postDelayed({
+                    startActivity(Intent(this, RegistroActivity::class.java))
+                    // Aquí puedes realizar cualquier acción adicional después del retraso
+                }, 2000)
             }
         } else {
             showAlert("El usuario no se ha registrado correctamente")
@@ -75,7 +81,7 @@ class RegistroMedicoActivity : AppCompatActivity() {
         )
         val myDoc = myCol.document(email).set(nuevaInfo)
             .addOnSuccessListener {
-                showAlert("Datos actualizados")
+                Toast.makeText(this, "Datos actualizados", Toast.LENGTH_SHORT).show()
             }
             .addOnFailureListener { e ->
                 showAlert("Error")

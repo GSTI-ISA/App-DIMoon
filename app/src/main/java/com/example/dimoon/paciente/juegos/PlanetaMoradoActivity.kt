@@ -27,21 +27,22 @@ import java.util.Locale
 
 
 class PlanetaMoradoActivity : BasePaciente() {
-    private  lateinit var  iv_11:ImageView
-    private  lateinit var  iv_12:ImageView
-    private  lateinit var  iv_13:ImageView
-    private  lateinit var  iv_14:ImageView
-    private  lateinit var  iv_21:ImageView
-    private  lateinit var  iv_22:ImageView
-    private  lateinit var  iv_23:ImageView
-    private  lateinit var  iv_24:ImageView
-    private  lateinit var  iv_31:ImageView
-    private  lateinit var  iv_32:ImageView
-    private  lateinit var  iv_33:ImageView
-    private  lateinit var  iv_34:ImageView
-    private lateinit var  puntuacion:TextView
-    lateinit  var  mPlayer: MediaPlayer
-    var  suena = false;
+    private lateinit var iv_11: ImageView
+    private lateinit var iv_12: ImageView
+    private lateinit var iv_13: ImageView
+    private lateinit var iv_14: ImageView
+    private lateinit var iv_21: ImageView
+    private lateinit var iv_22: ImageView
+    private lateinit var iv_23: ImageView
+    private lateinit var iv_24: ImageView
+    private lateinit var iv_31: ImageView
+    private lateinit var iv_32: ImageView
+    private lateinit var iv_33: ImageView
+    private lateinit var iv_34: ImageView
+    private lateinit var puntuacion: TextView
+    lateinit var mPlayer: MediaPlayer
+    lateinit var mp: MediaPlayer
+    var suena = true;
 
     var ajolote = 0
     var oso = 0
@@ -49,14 +50,14 @@ class PlanetaMoradoActivity : BasePaciente() {
     var pollito = 0
     var foca = 0
     var oveja = 0
-    var imagenesArray = arrayOf(11,12,13,14,15,16,21,22,23,24,25,26)
+    var imagenesArray = arrayOf(11, 12, 13, 14, 15, 16, 21, 22, 23, 24, 25, 26)
 
-    var numeroImagen  = 1
-    lateinit var imagen1:ImageView
-    lateinit var imagen2:ImageView
+    var numeroImagen = 1
+    lateinit var imagen1: ImageView
+    lateinit var imagen2: ImageView
     var puntos = 0
 
-    private lateinit var cronometro:TextView
+    private lateinit var cronometro: TextView
     private lateinit var cronometroContador: CountDownTimer
 
 
@@ -135,38 +136,44 @@ class PlanetaMoradoActivity : BasePaciente() {
 
     }
 
-    fun sonido(sonidoName: String,loop: Boolean=false){
-        var ID = resources.getIdentifier(sonidoName,"raw", packageName)//coger id del sonido pasado por f(x)
+    fun sonido(sonidoName: String, loop: Boolean = false) {
+        var ID = resources.getIdentifier(
+            sonidoName,
+            "raw",
+            packageName
+        )//coger id del sonido pasado por f(x)
 
-        if( sonidoName == "background"){
+        if (sonidoName == "background") {
             mPlayer = MediaPlayer.create(this, ID)
             mPlayer.isLooping = loop
-            mPlayer.setVolume(0.03F,0.03F)
-            if(!mPlayer.isPlaying) {
+            mPlayer.setVolume(0.03F, 0.03F)
+            if (!mPlayer.isPlaying) {
                 mPlayer.start()
-            }}
-        else{
-            mPlayer = MediaPlayer.create(this, ID)
-            mPlayer.setOnCompletionListener(MediaPlayer.OnCompletionListener { mp ->
+            }
+        } else {
+            mp = MediaPlayer.create(this, ID)
+            mp.setOnCompletionListener(MediaPlayer.OnCompletionListener { mp ->
                 mp.stop() //parar sonido
                 mp.release()
             })
-            if(!mPlayer.isPlaying){
-                mPlayer.start()
+            if (!mp.isPlaying) {
+                mp.start()
             }
 
         }
 
 
     }
-    fun pausarSonido(){
-        if (mPlayer.isPlaying) {
+
+    fun pausarSonido() {
+        if (::mPlayer.isInitialized && mPlayer.isPlaying) {
             mPlayer.pause()
             mPlayer.stop() //parar sonido
-            suena = false
+            mPlayer.release()
+            suena = true
         } else {
             mPlayer.start()
-            suena = true
+            suena = false
         }
     }
 
@@ -174,7 +181,8 @@ class PlanetaMoradoActivity : BasePaciente() {
 
 
 
-    fun seleccionar (imagen: View){
+
+    fun seleccionar(imagen: View) {
         Log.d("ClickDebug", "Clicked on image: ${imagen.id}")
         //cuando selecciones carta suena touch
         sonido("touch")
@@ -185,53 +193,55 @@ class PlanetaMoradoActivity : BasePaciente() {
     private fun verificar(imagen: View) {
         var iv = imagen as ImageView
         //Cogeremos tag anteriores para saber hasta cual son las imagenes que tenemos y cuales las copias(parejas)
-        var tag = imagen.tag.toString().toInt()//imagen a la que se hizo click--> extraemos el tag en entero
+        var tag =
+            imagen.tag.toString()
+                .toInt()//imagen a la que se hizo click--> extraemos el tag en entero
 
         //var imagenesArray = arrayOf(11,12,13,14,16,21,22,23,24,25,26)
-        if(imagenesArray[tag]==11){//¿es la imagen en posicion 11?
+        if (imagenesArray[tag] == 11) {//¿es la imagen en posicion 11?
             iv.setImageResource(ajolote)
-        }else if (imagenesArray[tag]==12){
+        } else if (imagenesArray[tag] == 12) {
             iv.setImageResource((oso))
-        }else if (imagenesArray[tag]==13){
+        } else if (imagenesArray[tag] == 13) {
             iv.setImageResource((pollito))
-        }else if (imagenesArray[tag]==14){
+        } else if (imagenesArray[tag] == 14) {
             iv.setImageResource((dinosaurio))
-        }else if (imagenesArray[tag]==15){
+        } else if (imagenesArray[tag] == 15) {
             iv.setImageResource((foca))
-        }else if (imagenesArray[tag]==16){
+        } else if (imagenesArray[tag] == 16) {
             iv.setImageResource((oveja))
-        }else if (imagenesArray[tag]==21){
+        } else if (imagenesArray[tag] == 21) {
             iv.setImageResource((ajolote))
-        }else if (imagenesArray[tag]==22){
+        } else if (imagenesArray[tag] == 22) {
             iv.setImageResource((oso))
-        }else if (imagenesArray[tag]==23){
+        } else if (imagenesArray[tag] == 23) {
             iv.setImageResource((pollito))
-        }else if (imagenesArray[tag]==24){
+        } else if (imagenesArray[tag] == 24) {
             iv.setImageResource((dinosaurio))
-        }else if (imagenesArray[tag]==25){
+        } else if (imagenesArray[tag] == 25) {
             iv.setImageResource((foca))
-        }else if (imagenesArray[tag]==26){
+        } else if (imagenesArray[tag] == 26) {
             iv.setImageResource((oveja))
         }
 
         //guardar temporalmente imagen seleccionada
-        if (numeroImagen==1){
+        if (numeroImagen == 1) {
             imagen1 = iv // es igual a la imagen seleccionada
             numeroImagen = 2
             iv.isEnabled = false//desabilitar imagen seleccionada para que no se seleccione la misma
-        }else if (numeroImagen==2){
+        } else if (numeroImagen == 2) {
             imagen2 = iv // es igual a la imagen seleccionada
             numeroImagen = 1
             iv.isEnabled = false//desabilitar imagen seleccionada para que no se seleccione la misma
             deshabilitarImagenes()
-            val  h = Handler(Looper.getMainLooper())
-            h.postDelayed({ImagenesIguales()},1000)
+            val h = Handler(Looper.getMainLooper())
+            h.postDelayed({ ImagenesIguales() }, 1000)
         }
 
     }
 
     private fun ImagenesIguales() {
-        if(imagen1.drawable.constantState == imagen2.drawable.constantState){
+        if (imagen1.drawable.constantState == imagen2.drawable.constantState) {
             sonido("success")
             puntos++//sumamos 1 punto
             puntuacion.text = "Puntuación: $puntos"
@@ -241,14 +251,16 @@ class PlanetaMoradoActivity : BasePaciente() {
             imagen2.isEnabled = false
             imagen1.tag = ""
             imagen2.tag = ""
-        }else{
+        } else {
             sonido("no")
             //ocultamos imagen poniendo encima la carta oculta
             imagen1.setImageResource(R.drawable.oculta)
             imagen2.setImageResource(R.drawable.oculta)
         }
         //habilitar imagenes
-        iv_11.isEnabled = !iv_11.tag.toString().isEmpty()//si no esta vacio habilitalo--> tag que tengan algo dentro
+        iv_11.isEnabled =
+            !iv_11.tag.toString()
+                .isEmpty()//si no esta vacio habilitalo--> tag que tengan algo dentro
         iv_12.isEnabled = !iv_12.tag.toString().isEmpty()
         iv_13.isEnabled = !iv_13.tag.toString().isEmpty()
         iv_14.isEnabled = !iv_14.tag.toString().isEmpty()
@@ -280,8 +292,8 @@ class PlanetaMoradoActivity : BasePaciente() {
 
     }
 
-    fun finJuego(tiempo:String){
-        if(iv_11.tag.toString().isEmpty() &&
+    fun finJuego(tiempo: String) {
+        if (iv_11.tag.toString().isEmpty() &&
             iv_12.tag.toString().isEmpty() &&
             iv_13.tag.toString().isEmpty() &&
             iv_14.tag.toString().isEmpty() &&
@@ -292,53 +304,66 @@ class PlanetaMoradoActivity : BasePaciente() {
             iv_31.tag.toString().isEmpty() &&
             iv_32.tag.toString().isEmpty() &&
             iv_33.tag.toString().isEmpty() &&
-            iv_34.tag.toString().isEmpty()){
-            //mPlayer.stop()
-            //mPlayer.release()
+            iv_34.tag.toString().isEmpty()
+        ) {
+            mPlayer.stop()
+            mPlayer.release()
             cronometroContador.cancel()
             sonido("win")
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("ENHORABUENA").setMessage("Tiempo:$tiempo").setCancelable(false).setPositiveButton("PROXIMA AVENTURA",
-                DialogInterface.OnClickListener{dialogInterface,i->
-                    pausarSonido()
-                    val intent = Intent(this, HomePacienteActivity::class.java)
-                    intent.putExtra("enableButton2", true)
-                    intent.putExtra("enableButton3", true)
-                    intent.putExtra("enableButton4", true)
-                    startActivity(intent)
-                    //val intent2 = Intent(this, ShowPacienteActivity::class.java)
-                    //intent2.putExtra("tiempo_parejas", tiempo)
-                    almacenarPuntuacionBD(tiempo)
+            builder.setTitle("ENHORABUENA").setMessage("Tiempo:$tiempo").setCancelable(false)
+                .setPositiveButton("PROXIMA AVENTURA",
+                    DialogInterface.OnClickListener { dialogInterface, i ->
 
-                })
+                        val intent = Intent(this, HomePacienteActivity::class.java)
+                        intent.putExtra("enableButton2", true)
+                        intent.putExtra("enableButton3", true)
+                        intent.putExtra("enableButton4", true)
+                        startActivity(intent)
+                        //val intent2 = Intent(this, ShowPacienteActivity::class.java)
+                        //intent2.putExtra("tiempo_parejas", tiempo)
+                        almacenarPuntuacionBD(tiempo)
+                        if (suena) {
+                            mPlayer.pause() // Pause the sound if it's currently playing
+                            suena = false
+                        }
+
+                    })
             builder.show()
         }
     }
 
 
+    fun cronometro() {
 
-    fun cronometro(){
-
-        cronometroContador = object : CountDownTimer(600000, 1000) {//max 10min
-        override fun onTick(millisUntilFinished: Long) {
-            // Actualiza tu EditText con el tiempo restante
-            val tiempoTranscurrido = 600000 - millisUntilFinished
-            val minutos: Long = tiempoTranscurrido / 1000 / 60
-            val segundos: Long = tiempoTranscurrido / 1000 % 60
-            var TimeFormatted:String = String.format(Locale.getDefault(),"%02d:%02d",minutos,segundos)
-            cronometro.setText(TimeFormatted)
-            finJuego(TimeFormatted)
-        }
+        cronometroContador = object : CountDownTimer(600000, 1000) {
+            //max 10min
+            override fun onTick(millisUntilFinished: Long) {
+                // Actualiza tu EditText con el tiempo restante
+                val tiempoTranscurrido = 600000 - millisUntilFinished
+                val minutos: Long = tiempoTranscurrido / 1000 / 60
+                val segundos: Long = tiempoTranscurrido / 1000 % 60
+                var TimeFormatted: String =
+                    String.format(Locale.getDefault(), "%02d:%02d", minutos, segundos)
+                cronometro.setText(TimeFormatted)
+                finJuego(TimeFormatted)
+            }
 
             override fun onFinish() {
                 val builder = AlertDialog.Builder(this@PlanetaMoradoActivity)
-                builder.setTitle("SE HA ACABADO EL TIEMPO").setCancelable(false).setPositiveButton("iNTENTARLO DE NUEVO",
-                    DialogInterface.OnClickListener{dialogInterface,i->
-                        pausarSonido()
-                        val intent = Intent(this@PlanetaMoradoActivity, PlanetaMoradoActivity::class.java)
-                        startActivity(intent)
+                builder.setTitle("SE HA ACABADO EL TIEMPO").setCancelable(false)
+                    .setPositiveButton("iNTENTARLO DE NUEVO",
+                        DialogInterface.OnClickListener { dialogInterface, i ->
 
-                    })
+                            pausarSonido()
+                            val intent =
+                                Intent(
+                                    this@PlanetaMoradoActivity,
+                                    PlanetaMoradoActivity::class.java
+                                )
+                            startActivity(intent)
+
+                        })
                 builder.show()
 
             }
@@ -355,7 +380,6 @@ class PlanetaMoradoActivity : BasePaciente() {
         val myCol = myBD.collection("Pacientes")
 
 
-
         //paciente
         var user = Firebase.auth.currentUser?.email.toString()
 
@@ -370,6 +394,7 @@ class PlanetaMoradoActivity : BasePaciente() {
 
 
     }
+
     private fun showAlert(text: String) {// recibe texto
         //builder sirve para construir cosas dificiles con este patron. Es como un constructor pero que ya viene hecho
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
